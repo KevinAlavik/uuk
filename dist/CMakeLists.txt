@@ -76,6 +76,7 @@ add_custom_target(run
         -cdrom ${ISO_OUT}
         -smp 4
         -serial file:${CMAKE_BINARY_DIR}/com1.log
+        -debugcon stdio
         DEPENDS uuk_iso ovmf
         COMMENT "Running QEMU with the built ISO..."
 )
