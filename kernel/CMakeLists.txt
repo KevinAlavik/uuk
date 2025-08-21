@@ -1,4 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
+project(uuk C ASM)
+
+# ==========================================
+# Toolchain
+# ==========================================
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+
+set(CMAKE_C_COMPILER_WORKS TRUE)
+set(CMAKE_CXX_COMPILER_WORKS TRUE)
 
 # ==========================================
 # Dependencies
@@ -70,7 +80,7 @@ add_executable(kernel ${SOURCES} ${FLANTERM_SOURCES})
 # Compiler
 # ==========================================
 if (NOT CMAKE_C_COMPILER_ID STREQUAL "GNU")
-    message(FATAL_ERROR "!!! To build uuk you need a GCC compiler which can output x86_64 ELF")
+    message(FATAL_ERROR "!!! To build uuk you need a GCC compiler which can output x86_64 ELF, not ${CMAKE_C_COMPILER_ID}")
 endif()
 
 target_compile_options(kernel PRIVATE
@@ -115,3 +125,4 @@ target_link_options(kernel PRIVATE
         -T ${CMAKE_CURRENT_SOURCE_DIR}/linker.ld
         -Wl,-m,elf_x86_64
 )
+
